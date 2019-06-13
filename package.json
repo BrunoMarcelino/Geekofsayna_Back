@@ -1,0 +1,25 @@
+{
+  "name": "geekofsayna_back",
+  "version": "1.0.0",
+  "description": "backend developpement webcup",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoMarcelino/Geekofsayna_Back.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "Backend",
+    "Javascript"
+  ],
+  "author": "Geek Of Sayna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrunoMarcelino/Geekofsayna_Back/issues"
+  },
+  "homepage": "https://github.com/BrunoMarcelino/Geekofsayna_Back#readme"
+}
