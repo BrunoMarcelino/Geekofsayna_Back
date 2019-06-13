@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/BrunoMarcelino/Geekofsayna_Back/issues"
   },
-  "homepage": "https://github.com/BrunoMarcelino/Geekofsayna_Back#readme"
+  "homepage": "https://github.com/BrunoMarcelino/Geekofsayna_Back#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
