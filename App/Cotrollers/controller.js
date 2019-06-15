@@ -68,15 +68,15 @@ module.exports.postArticle = function (req, res) {
     var nom = req.body.nom
     var article = req.body.article
     var id_utilisateur = req.body.id_utilisateur
-   // var image = req.files.file.name
+    var image = req.files.file.name
 
-    //let imageFile = req.files.file;
+    let imageFile = req.files.file;
 
-    //imageFile.mv(`${__dirname}/public/${image}`, function (err) {
-        //if (err) {
-       //     return res.status(500).send(err, 'erreur');
-     //   }
-   // });
+    imageFile.mv(`${__dirname}/public/${image}`, function (err) {
+        if (err) {
+            return res.status(500).send(err, 'erreur');
+       }
+    });
 
 
     Profile_article.find()
