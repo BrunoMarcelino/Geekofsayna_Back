@@ -1,11 +1,21 @@
 var notes = require('../Cotrollers/controller');
 
 
-module.exports.route =function (app) {
+module.exports.route = function (app) {
 
-app.route('/post')
-  .post(notes.postDonne)
+    app.route('/udpdate/:id')
+        .put(notes.updateDonnee)
+    app.route('/delete/:id')
+        .delete(notes.deleteDonnee)
 
-  app.route('/')
-  .get(notes.getDonne)
+        app.route('/image/:im')
+        .get(notes.image)
+
+        
+    app.route('/article')
+        .post(notes.postArticle)
+
+    app.route('/')
+        .get(notes.getDonne)
+        .post(notes.postDonne)
 }
