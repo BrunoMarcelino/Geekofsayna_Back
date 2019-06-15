@@ -8,6 +8,13 @@ module.exports.route = function (app) {
     app.route('/delete/:id')
         .delete(notes.deleteDonnee)
 
+        app.route('/image/:im')
+        .get(notes.image)
+
+        
+    app.route('/article')
+        .post(notes.postArticle)
+
     app.route('/')
         .get(notes.getDonne)
         .post(notes.postDonne)

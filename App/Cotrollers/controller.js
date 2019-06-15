@@ -1,5 +1,5 @@
 const Profile = require('../Models/model');
-const Profile = require('../Models/model.article');
+const Profile_article = require('../Models/modele.article');
 const fs = require('fs')
 //var bcrypt = require('bcryptjs');
 //var salt = bcrypt.genSaltSync(10);
@@ -43,6 +43,9 @@ module.exports.getDonne = (req, res) => {
         });
 };
 module.exports.updateDonnee = function (req, res) {
+
+   
+    
     var nom = req.body.nom
     var email = req.body.email
     var password = req.body.password
@@ -52,13 +55,19 @@ module.exports.updateDonnee = function (req, res) {
     });
 };
 
-module.exports.deleteDonne = function (req, res) {
+module.exports.deleteDonnee= function (req, res) {
     Profile.findByIdAndRemove(req.params.id, function (err) {
         if (err) return (err);
         res.send('Deleted successfully!');
     })
 };
+
+
+
 module.exports.postArticle = function (req, res) {
+console.log(req.files);
+
+
     var nom = req.body.nom
     var article = req.body.article
     var id_utilisateur =req.body.id_utilisateur
@@ -66,14 +75,14 @@ module.exports.postArticle = function (req, res) {
 
     let imageFile = req.files.file;
 
-    imageFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function (err) {
+    imageFile.mv(`${__dirname}/public/${image}`, function (err) {
         if (err) {
-            return res.status(500).send(err, 'erreur');
+       return res.status(500).send(err, 'erreur');
         }
     });
 
 
-    Profile.find()
+    Profile_article.find()
         .then(note0 => {
             if (note0.length == 0) {
                 id = 0;
@@ -82,23 +91,26 @@ module.exports.postArticle = function (req, res) {
                 id = parseInt(note0[note0.length - 1].id) + 1;
             }
 
-            const profil = new Profile({ _id: id, nom: nom,email:email, password: password,photo_profile: photo_profile });
-            (!nom || !email || !password) ? console.log(" ", nom,email,password) : profil.save()
-                .then(() => {
-                    Profile.find()
-                        .then(note => {
-                            res.send(note);
-                        })
+            const articles = new Profile_article({ _id: id, nom: nom,article:article, id_utilisateur: id_utilisateur });
+            (!nom || !article) ? console.log("mank donne ", nom,article) : articles.save()
+                .then((note) => {
+                            res.send(note)         
                 })
                 .catch(e => {
                     res.status(500).send({ mes: e.mes || "erreur" })
                 })
-                bcrypt.hash(profil.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    profil.password = hash;
-                    profil
-                      .save()
-                  });
+                
         })
 
+}
+
+
+module.exports.image = (req, res) => {
+    try {
+        let a = fs.readFileSync('./App/Cotrollers/public/'+req.params.im)
+        res.write(a)
+        res.end()
+    } catch (e) {
+        console.log("tsy lasa le sary", e.stack);
+    }
 }

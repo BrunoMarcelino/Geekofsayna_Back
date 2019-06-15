@@ -1,18 +1,36 @@
 var express = require("express")
-var bodyParser = require("body-parser")
 var r = require("./App/Routes/route").route
 const dbConfig = require('./Config/dbconfig');
+const path = require('path');
 const mongoose = require('mongoose');
-var app = express();
-var cors = require('cors')
-mongoose.Promise = global.Promise;
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+const app = express();
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(fileUpload());
+app.use('/public', express.static(__dirname + '/public'));
+
+
+
+
+
 
 // Connecting to the database
 
 //app.use('/',r);
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
+
+
 
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
