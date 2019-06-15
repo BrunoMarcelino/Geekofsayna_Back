@@ -8,4 +8,7 @@ app.route('/post')
 
   app.route('/')
   .get(notes.getDonne)
+
+  app.route('/login')
+  .post(notes.postLogin)
 }

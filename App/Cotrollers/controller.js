@@ -40,3 +40,21 @@ module.exports.getDonne = (req, res) => {
             res.status(500).send({ mes: e.mes || "erreur" })
         });
 };
+
+module.exports.postLogin = function (req, res) {
+    var nom = req.body.nom
+    var email = req.body.email
+    var password = req.body.password
+    Profile.find()
+        .then(note0 => {
+            for(let i=0;i<note0.length;i++){
+                if((note0[i].nom==nom || note0[i].email==nom) && note0[i].password==password){
+                    res.send('succes')
+                    console.log('login validé');
+                } else {
+                    res.send('echec')
+                    console.log('password erroné');
+                }
+            }
+        })
+}
