@@ -6,7 +6,8 @@ const ProfileSchema = mongoose.Schema({
     nom: String,
     article:String,
     id_utilisateur:String,
-    image:String
+    image:String,
+    comment:Array
     
 }, {
     timestamps: true
