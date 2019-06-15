@@ -18,6 +18,9 @@ module.exports.route = function (app) {
     app.route('/comment')
         .put(notes.commentaire)
 
+    app.route('/login')
+        .post(notes.postLogin)
+        
     app.route('/')
         .get(notes.getDonne)
         .post(notes.postDonne)

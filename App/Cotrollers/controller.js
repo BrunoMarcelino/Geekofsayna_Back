@@ -62,7 +62,23 @@ module.exports.deleteDonnee = function (req, res) {
     })
 };
 
-
+module.exports.postLogin = function (req, res) {
+    var nom = req.body.nom
+    var email = req.body.email
+    var password = req.body.password
+    Profile.find()
+        .then(note => {
+            for(let i=0;i<note.length;i++){
+                if((note[i].nom==nom || note[i].email==nom) && note[i].password==password){
+                    res.send('succes')
+                    console.log('login validé');
+                } else {
+                    res.send('echec')
+                    console.log('password erroné');
+                }
+            }
+        })
+}
 
 module.exports.postArticle = function (req, res) {
     var nom = req.body.nom
