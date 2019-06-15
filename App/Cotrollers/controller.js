@@ -46,9 +46,9 @@ module.exports.postLogin = function (req, res) {
     var email = req.body.email
     var password = req.body.password
     Profile.find()
-        .then(note0 => {
-            for(let i=0;i<note0.length;i++){
-                if((note0[i].nom==nom || note0[i].email==nom) && note0[i].password==password){
+        .then(note => {
+            for(let i=0;i<note.length;i++){
+                if((note[i].nom==nom || note[i].email==nom) && note[i].password==password){
                     res.send('succes')
                     console.log('login validé');
                 } else {
