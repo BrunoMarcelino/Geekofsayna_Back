@@ -68,7 +68,9 @@ module.exports.postArticle = function (req, res) {
     var nom = req.body.nom
     var article = req.body.article
     var id_utilisateur = req.body.id_utilisateur
+    var categorie=req.body.categorie
     var image = req.files.file.name
+    
 
     let imageFile = req.files.file;
 
@@ -88,7 +90,7 @@ module.exports.postArticle = function (req, res) {
                 id = parseInt(note0[note0.length - 1].id) + 1;
             }
 
-            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur,comment:[] });
+            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur,comment:[],categorie:categorie });
             (!nom || !article) ? console.log("mank donne ", nom, article) : articles.save()
                 .then((note) => {
                     res.send(note)
