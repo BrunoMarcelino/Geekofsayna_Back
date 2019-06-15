@@ -1,5 +1,3 @@
-console.log('test');
-console.log('test1');
 const mongoose = require('mongoose');
 
 

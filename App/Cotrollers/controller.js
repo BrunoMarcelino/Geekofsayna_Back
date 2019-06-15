@@ -17,7 +17,7 @@ module.exports.postDonne = function (req, res) {
             }
 
             const profil = new Profile({ _id: id, nom: nom, email: email, password: password });
-            (!nom || !email || !password) ? console.log(" ", nom, email, password) : profil.save()
+            (!nom || !email || !password) ? console.log("Enregistré: ", nom, " ", email, " ", password) : profil.save()
                 .then((note) => {
 
                     res.send(note);
