@@ -8,12 +8,15 @@ module.exports.route = function (app) {
     app.route('/delete/:id')
         .delete(notes.deleteDonnee)
 
-        app.route('/image/:im')
+    app.route('/image/:im')
         .get(notes.image)
 
-        
+
     app.route('/article')
         .post(notes.postArticle)
+
+    app.route('/comment')
+        .put(notes.commentaire)
 
     app.route('/')
         .get(notes.getDonne)
