@@ -32,7 +32,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 
 
-mongoose.connect(dbConfig.url, {
+mongoose.connect(dbConfig.urlLocal, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");

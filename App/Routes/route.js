@@ -8,7 +8,6 @@ module.exports.route = function (app) {
     app.route('/delete/:id')
         .delete(notes.deleteDonnee)
 
-<<<<<<< HEAD
     app.route('/image/:im')
         .get(notes.image)
 
@@ -25,11 +24,9 @@ module.exports.route = function (app) {
     app.route('/')
         .get(notes.getDonne)
         .post(notes.postDonne)
-=======
   app.route('/')
   .get(notes.getDonne)
 
   app.route('/login')
   .post(notes.postLogin)
->>>>>>> tsiory
 }
