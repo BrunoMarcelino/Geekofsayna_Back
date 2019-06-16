@@ -55,7 +55,6 @@ console.log("tafiditra")
             res.status(500).send({ mes: e.mes || "erreur" })
         });
 };
-<<<<<<< HEAD
 module.exports.updateDonnee = function (req, res) {
 
 
@@ -69,14 +68,14 @@ module.exports.updateDonnee = function (req, res) {
     });
 };
 
+
+
 module.exports.deleteDonnee = function (req, res) {
     Profile.findByIdAndRemove(req.params.id, function (err) {
         if (err) return (err);
         res.send('Deleted successfully!');
     })
 };
-=======
->>>>>>> tsiory
 
 module.exports.postLogin = function (req, res) {
     var nom = req.body.nom
@@ -94,7 +93,6 @@ module.exports.postLogin = function (req, res) {
                 }
             }
         })
-<<<<<<< HEAD
 }
 
 module.exports.postArticle = function (req, res) {
@@ -172,6 +170,4 @@ module.exports.commentaire = (req, res) => {
         });
 
 
-=======
->>>>>>> tsiory
 }
