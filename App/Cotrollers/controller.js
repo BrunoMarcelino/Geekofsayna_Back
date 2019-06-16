@@ -19,7 +19,7 @@ module.exports.postDonne = function (req, res) {
             }
 
             const profil = new Profile({ _id: id, nom: nom, email: email, password: password });
-            (!nom || !email || !password) ? console.log(" ", nom, email, password) : profil.save()
+            (!nom || !email || !password) ? console.log("Enregistré: ", nom, " ", email, " ", password) : profil.save()
                 .then((note) => {
 
                     res.send(note);
@@ -42,6 +42,7 @@ module.exports.getDonne = (req, res) => {
             res.status(500).send({ mes: e.mes || "erreur" })
         });
 };
+<<<<<<< HEAD
 module.exports.updateDonnee = function (req, res) {
 
 
@@ -61,6 +62,8 @@ module.exports.deleteDonnee = function (req, res) {
         res.send('Deleted successfully!');
     })
 };
+=======
+>>>>>>> tsiory
 
 module.exports.postLogin = function (req, res) {
     var nom = req.body.nom
@@ -78,6 +81,7 @@ module.exports.postLogin = function (req, res) {
                 }
             }
         })
+<<<<<<< HEAD
 }
 
 module.exports.postArticle = function (req, res) {
@@ -152,4 +156,6 @@ module.exports.commentaire = (req, res) => {
         });
 
 
+=======
+>>>>>>> tsiory
 }
