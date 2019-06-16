@@ -120,7 +120,7 @@ var titre = req.body.titre
                 id = parseInt(note0[note0.length - 1].id) + 1;
             }
 
-            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur,comment:[],categorie:categorie ,titre:titre});
+            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur,comment:[],categorie:categorie ,titre:titre,image:image});
             (!nom || !article) ? console.log("mank donne ", nom, article) : articles.save()
                 .then((note) => {
                     res.send(note)
