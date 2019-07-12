@@ -36,7 +36,7 @@ module.exports.postDonne = function (req, res) {
 module.exports.getDonne = (req, res) => {
     Profile.find()
         .then(note => {
-console.log("tafiditra")
+            console.log("tafiditra")
             res.send(note)
         })
         .catch(e => {
@@ -44,21 +44,7 @@ console.log("tafiditra")
         });
 };
 
-
-module.exports.getArt = (req, res) => {
-    Profile_article.find()
-        .then(note => {
-console.log("tafiditra")
-            res.send(note)
-        })
-        .catch(e => {
-            res.status(500).send({ mes: e.mes || "erreur" })
-        });
-};
 module.exports.updateDonnee = function (req, res) {
-
-
-
     var nom = req.body.nom
     var email = req.body.email
     var password = req.body.password
@@ -83,8 +69,8 @@ module.exports.postLogin = function (req, res) {
     var password = req.body.password
     Profile.find()
         .then(note => {
-            for(let i=0;i<note.length;i++){
-                if((note[i].nom==nom || note[i].email==nom) && note[i].password==password){
+            for (let i = 0; i < note.length; i++) {
+                if ((note[i].nom == nom || note[i].email == nom) && note[i].password == password) {
                     res.send('succes')
                     console.log('login validé');
                 } else {
@@ -95,34 +81,41 @@ module.exports.postLogin = function (req, res) {
         })
 }
 
+
+module.exports.getArt = (req, res) => {
+    Profile_article.find()
+        .then(note => {
+            console.log("tafiditra")
+            res.send(note)
+        })
+        .catch(e => {
+            res.status(500).send({ mes: e.mes || "erreur" })
+        });
+};
+
 module.exports.postArticle = function (req, res) {
     var nom = req.body.nom
-var titre = req.body.titre
+    var titre = req.body.titre
     var article = req.body.article
     var id_utilisateur = req.body.id_utilisateur
-    var categorie=req.body.categorie
+    var categorie = req.body.categorie
     var image = req.files.file.name
-    
-
-    let imageFile = req.files.file;
+    var imageFile = req.files.file;
 
     imageFile.mv(`${__dirname}/public/${image}`, function (err) {
         if (err) {
             return res.status(500).send(err, 'erreur');
-       }
+        }
     });
-
-
     Profile_article.find()
         .then(note0 => {
             if (note0.length == 0) {
                 id = 0;
-
             } else {
                 id = parseInt(note0[note0.length - 1].id) + 1;
             }
 
-            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur,comment:[],categorie:categorie ,titre:titre,image:image});
+            const articles = new Profile_article({ _id: id, nom: nom, article: article, id_utilisateur: id_utilisateur, comment: [], categorie: categorie, titre: titre, image: imageFile });
             (!nom || !article) ? console.log("mank donne ", nom, article) : articles.save()
                 .then((note) => {
                     res.send(note)
@@ -130,9 +123,7 @@ var titre = req.body.titre
                 .catch(e => {
                     res.status(500).send({ mes: e.mes || "erreur" })
                 })
-
         })
-
 }
 
 
@@ -158,10 +149,10 @@ module.exports.commentaire = (req, res) => {
             var com = note[0].comment
             com.push({ nom: nom, commentaire: comment })
 
-            Profile_article.findByIdAndUpdate(id_article, {comment:com}, function (err, product) {
+            Profile_article.findByIdAndUpdate(id_article, { comment: com }, function (err, product) {
                 if (err) return (err);
                 console.log(product);
-                
+
                 res.send(product);
             });
         })
